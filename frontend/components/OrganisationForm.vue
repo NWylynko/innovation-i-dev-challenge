@@ -12,6 +12,7 @@
       <v-text-field v-model="organisation.phone" label="Phone" />
       <v-text-field v-model="organisation.email" label="Email" />
       <v-text-field v-model="organisation.website" label="Website" />
+      <v-text-field v-model="organisation.retainer" label="Retainer" />
     </v-card-text>
     <v-card-actions>
       <v-btn v-if="!updating" :disabled="lock" color="primary" @click="addOrganisation()">Save</v-btn>

@@ -56,6 +56,7 @@ export default {
         { text: 'Phone', value: 'phone' },
         { text: 'Email', value: 'email' },
         { text: 'Website', value: 'website' },
+        { text: 'Retainer', value: 'retainer' },
         { text: 'Active', value: 'active' },
       ],
     }
@@ -65,7 +66,9 @@ export default {
   },
   methods: {
     async getOrganisations() {
-      this.organisations = await this.$axios.$get('/organisation/organisations')
+      const orgs = await this.$axios.$get('/organisation/organisations')
+      const retainerTotal = orgs.reduce((total, org) => total + org.retainer, 0)
+      this.organisations = [...orgs, { name: 'Totals', retainer: retainerTotal }]
     },
     async deleteOrganisation(id) {
       await this.$axios.$delete('/organisation/organisation', { params: { id } })
