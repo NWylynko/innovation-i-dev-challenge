@@ -53,7 +53,6 @@ export default {
   methods: {
     async getOrganisation(id) {
       const response = await this.$axios.$get(`/organisation/organisation?id=${id}`)
-      delete response.employees
       this.organisation = response
     },
     async addOrganisation() {

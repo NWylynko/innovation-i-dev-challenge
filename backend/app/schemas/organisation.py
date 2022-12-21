@@ -13,14 +13,15 @@ from enum import IntEnum
 
 class Organisation(Base):
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False)
+    name = Column(String)
     address = Column(String)
     city = Column(String)
     state = Column(String)
     country = Column(String)
     postcode = Column(String)
     phone = Column(String)
-    email = Column(String, nullable=False)
+    email = Column(String)
     website = Column(String)
     active = Column(Boolean, default=True)
+    retainer = Column(Float, default=0.0)
     sqlite_autoincrement=True

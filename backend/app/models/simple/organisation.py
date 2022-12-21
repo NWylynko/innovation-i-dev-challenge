@@ -15,5 +15,5 @@ class Organisation(Base):
     email : str = None
     website : str = None
     active : bool = None
-    employees : List[Employee] = None
+    retainer : float = None
     
