@@ -37,6 +37,17 @@ def create_organisation(
     
     return db_organisation
 
+@router.put("/organisation", response_model=models.Organisation)
+def update_organisation(
+    *,
+    db: Session = Depends(utils.get_db),
+    organisation: models.Organisation,
+    id: int
+):
+    organisation_data = organisation.dict(exclude_unset=True)
+    db.query(schemas.Organisation).filter(schemas.Organisation.id == id).update(organisation_data)
+    db.commit()
+    return organisation
 
 @router.delete("/organisation")
 def delete_organisation(

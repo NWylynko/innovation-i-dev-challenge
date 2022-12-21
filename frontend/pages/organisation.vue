@@ -1,15 +1,32 @@
 <template>
   <v-card>
     <v-card-title
-      >Organisation List <v-btn icon @click="dialog = true"><v-icon>mdi-plus</v-icon></v-btn></v-card-title
+      >Organisation List
+      <v-btn
+        icon
+        @click="
+          organisation_id = undefined
+          dialog = true
+        "
+        ><v-icon>mdi-plus</v-icon></v-btn
+      ></v-card-title
     >
     <v-data-table :headers="headers" :items="organisations">
       <template v-slot:item.active="{ item }">
         <v-btn icon @click="deleteOrganisation(item.id)"><v-icon>mdi-delete</v-icon></v-btn>
+        <v-btn
+          icon
+          @click="
+            organisation_id = item.id
+            dialog = true
+          "
+          ><v-icon>mdi-pen</v-icon></v-btn
+        >
       </template>
     </v-data-table>
     <v-dialog v-model="dialog">
       <organisation-form
+        :organisation_id="organisation_id"
         @save="
           dialog = false
           getOrganisations()
@@ -27,6 +44,7 @@ export default {
   data() {
     return {
       dialog: false,
+      organisation_id: undefined,
       organisations: [],
       headers: [
         { text: 'Name', value: 'name' },
